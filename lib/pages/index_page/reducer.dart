@@ -5,7 +5,7 @@ import 'state.dart';
 Reducer<IndexState> buildReducer() {
   return asReducer(<Object, Reducer<IndexState>>{
     IndexAction.changeIndex: _changeIndexReducer,
-    IndexAction.tabchanged: _onTapChanged
+    IndexAction.tabchanged: _onTapChanged,
   });
 }
 
