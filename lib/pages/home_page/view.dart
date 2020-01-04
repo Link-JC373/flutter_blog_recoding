@@ -1,3 +1,5 @@
+import 'package:blog_flutter/custom_widgets/search_widget.dart';
+import 'package:blog_flutter/pages/home_page/action.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'state.dart';
@@ -14,13 +16,13 @@ Widget homeBuildView(
             //固定在顶部
             pinned: true,
             snap: false,
-            // actions: <Widget>[
-            //   IconButton(
-            //       icon: Icon(Icons.search),
-            //       onPressed: () {
-            //         showSearch(context: context, delegate: SearchBarDelegate());
-            //       })
-            // ],
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    showSearch(context: context, delegate: SearchBarDelegate());
+                  })
+            ],
             title: Text('playMate'),
 
             bottom: TabBar(
@@ -30,7 +32,28 @@ Widget homeBuildView(
           )
         ];
       },
-      body: Text('Home'),
+      body: TabBarView(
+          controller: state.tabController,
+          children: state.tabNumber.map((int number) {
+            return NotificationListener(
+              onNotification: (scrollNotification) {
+                if (scrollNotification is ScrollUpdateNotification) {
+                  dispatch(HomeActionCreator.scrollAction(
+                      scrollNotification.metrics.pixels));
+                }
+                return false;
+              },
+              child: viewService.buildComponent('list$number'),
+            );
+          }).toList()),
     ),
+    floatingActionButton: state.isShowAdd
+        ? FloatingActionButton(
+            onPressed: () {
+              dispatch(HomeActionCreator.addNumber());
+            },
+            child: Icon(Icons.add, color: Colors.white),
+          )
+        : null,
   );
 }
