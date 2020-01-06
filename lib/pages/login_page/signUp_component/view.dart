@@ -5,8 +5,8 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
-    ListComponentState state, Dispatch dispatch, ViewService viewService) {
+    SignUpState state, Dispatch dispatch, ViewService viewService) {
   return Container(
-    child: Text('${state.typeIndex}'),
+    child: Text('signUp'),
   );
 }

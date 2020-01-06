@@ -1,8 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
-import 'components/list_component/state.dart';
-
 class HomeState implements Cloneable<HomeState> {
   List<Widget> tabs;
 
@@ -34,36 +32,4 @@ HomeState initState(Map<String, dynamic> args) {
   state.tabIndex = 0;
   state.number = 0;
   return state;
-}
-
-class ListFiConnector extends ConnOp<HomeState, ListComponentState> {
-  ListComponentState get(HomeState state) {
-    ListComponentState subState = new ListComponentState();
-    subState.typeIndex = 0;
-    return subState;
-  }
-}
-
-class ListSeConnector extends ConnOp<HomeState, ListComponentState> {
-  ListComponentState get(HomeState state) {
-    ListComponentState subState = new ListComponentState();
-    subState.typeIndex = 1;
-    return subState;
-  }
-}
-
-class ListThConnector extends ConnOp<HomeState, ListComponentState> {
-  ListComponentState get(HomeState state) {
-    ListComponentState subState = new ListComponentState();
-    subState.typeIndex = 2;
-    return subState;
-  }
-}
-
-class ListFoConnector extends ConnOp<HomeState, ListComponentState> {
-  ListComponentState get(HomeState state) {
-    ListComponentState subState = new ListComponentState();
-    subState.typeIndex = 3;
-    return subState;
-  }
 }

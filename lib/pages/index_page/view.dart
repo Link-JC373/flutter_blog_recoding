@@ -1,4 +1,5 @@
 import 'package:blog_flutter/custom_widgets/keepalive_widget.dart';
+import 'package:blog_flutter/utils/adapt.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'state.dart';
@@ -12,6 +13,7 @@ Widget buildView(IndexState state, Dispatch dispatch, ViewService viewService) {
         return KeepAliveWidget(page);
       }
 
+      Adapt.initContext(context);
       return Scaffold(
         // appBar: AppBar(
         //   title: Text('test'),

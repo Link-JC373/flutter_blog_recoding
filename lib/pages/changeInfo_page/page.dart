@@ -5,18 +5,18 @@ import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
 
-class DetailPage extends Page<DetailState, Map<String, dynamic>> {
-  DetailPage()
+class ChangeInfoPage extends Page<ChangeInfoState, Map<String, dynamic>> {
+  ChangeInfoPage()
       : super(
             initState: initState,
             effect: buildEffect(),
             reducer: buildReducer(),
             view: buildView,
-            dependencies: Dependencies<DetailState>(
+            dependencies: Dependencies<ChangeInfoState>(
                 adapter: null,
-                slots: <String, Dependent<DetailState>>{
+                slots: <String, Dependent<ChangeInfoState>>{
                 }),
-            middleware: <Middleware<DetailState>>[
+            middleware: <Middleware<ChangeInfoState>>[
             ],);
 
 }

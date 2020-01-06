@@ -1,10 +1,10 @@
 import 'package:fish_redux/fish_redux.dart';
 
 //TODO replace with your own action
-enum GlobalStoreAction { action }
+enum SignUpAction { action }
 
-class GlobalStoreActionCreator {
+class SignUpActionCreator {
   static Action onAction() {
-    return const Action(GlobalStoreAction.action);
+    return const Action(SignUpAction.action);
   }
 }

@@ -5,15 +5,15 @@ import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
 
-class SearchbarComponentComponent extends Component<SearchbarComponentState> {
-  SearchbarComponentComponent()
+class SignInComponent extends Component<SignInState> {
+  SignInComponent()
       : super(
             effect: buildEffect(),
             reducer: buildReducer(),
             view: buildView,
-            dependencies: Dependencies<SearchbarComponentState>(
+            dependencies: Dependencies<SignInState>(
                 adapter: null,
-                slots: <String, Dependent<SearchbarComponentState>>{
+                slots: <String, Dependent<SignInState>>{
                 }),);
 
 }

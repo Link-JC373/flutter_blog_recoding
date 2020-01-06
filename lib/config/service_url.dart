@@ -1,6 +1,6 @@
 // const serviceUrl = 'http://rap2api.taobao.org/app/mock/239342/';
-// const serviceUrl = 'http://192.168.137.1:7000/';
-const serviceUrl = 'http://192.168.43.247:7000/';
+const serviceUrl = 'http://192.168.137.1:7000/';
+// const serviceUrl = 'http://192.168.43.247:7000/';
 // const serviceUrl = 'http://10.112.6.156:7000/';
 // const serviceUrl = 'http://47.94.128.127:7000/';
 const servicePath = {

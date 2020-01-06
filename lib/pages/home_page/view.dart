@@ -1,4 +1,5 @@
 import 'package:blog_flutter/custom_widgets/search_widget.dart';
+import 'package:blog_flutter/custom_widgets/show_article_list.dart';
 import 'package:blog_flutter/pages/home_page/action.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
@@ -43,7 +44,11 @@ Widget homeBuildView(
                 }
                 return false;
               },
-              child: viewService.buildComponent('list$number'),
+              // child: viewService.buildComponent('list$number'),
+              child: ShowArticleList(
+                url: 'getArticleList',
+                articleTypeId: number,
+              ),
             );
           }).toList()),
     ),

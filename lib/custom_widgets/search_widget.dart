@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'show_article_list.dart';
+
 // import 'show_article_list.dart';
 
 class SearchBarDelegate extends SearchDelegate<String> {
@@ -31,11 +33,11 @@ class SearchBarDelegate extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     //搜索结果
-    // return ShowArticleList(
-    //   url: url,
-    //   searchContent: query,
-    // );
-    return Text('');
+    return ShowArticleList(
+      url: url,
+      searchContent: query,
+    );
+    // return Text('');
   }
 
   @override
