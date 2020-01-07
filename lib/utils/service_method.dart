@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 
-import '../routers/application.dart';
 import '../utils/httpHeaders.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,14 +38,13 @@ class DioUtil {
 
         //判断是否有权限，
         if (responseData['status'].toString() == '401') {
-          print('!!!!!!!!!!!!!!!!!!!!!!');
           print(responseData['status']);
 
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.clear();
 
           //在这里跳转，点赞功能会出问题：总是跳转。改成更改登录状态
-          Application.router.navigateTo(context, '/login');
+          Navigator.of(context).pushNamed('login_page');
 
           // Provider.of<IsLoginModal>(context).changeLoginState(false);
           loading = false;
@@ -95,6 +94,8 @@ class DioUtil {
           return prefs.getString('token');
         });
         return future.then((value) {
+          print('header-token-------------------->>');
+          print(value);
           options.headers["token"] = value;
           return options;
         }).whenComplete(() => dio.unlock());

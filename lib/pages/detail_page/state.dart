@@ -1,7 +1,8 @@
+import 'package:blog_flutter/global_store/state.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
-class DetailState implements Cloneable<DetailState> {
+class DetailState implements GlobalBaseState, Cloneable<DetailState> {
   bool isFocus = false;
   int articleId;
   int userId;
@@ -17,8 +18,15 @@ class DetailState implements Cloneable<DetailState> {
       ..userId = userId
       ..articleContent = articleContent
       ..isLiked = isLiked
-      ..likeCount = likeCount;
+      ..likeCount = likeCount
+      ..userInfo = userInfo;
   }
+
+  @override
+  Color themeColor;
+
+  @override
+  var userInfo;
 }
 
 DetailState initState(Map<String, dynamic> args) {
@@ -26,6 +34,6 @@ DetailState initState(Map<String, dynamic> args) {
 
   var state = DetailState();
   state.articleId = args['id'];
-  args['userId'] != null ? state.userId = args['userId'] : state.userId = 0;
+  // args['userId'] != null ? state.userId = args['userId'] : state.userId = 0;
   return state;
 }

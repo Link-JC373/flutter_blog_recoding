@@ -19,6 +19,7 @@ GlobalState _onAction(GlobalState state, Action action) {
 
 GlobalState _loginAction(GlobalState state, Action action) {
   final GlobalState newState = state.clone();
+  print(action.payload);
   newState.userInfo = action.payload ?? {};
   return newState;
 }

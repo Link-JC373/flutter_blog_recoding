@@ -10,6 +10,7 @@ Reducer<DetailState> buildReducer() {
       DetailAction.initAction: _initReducer,
       DetailAction.commentClick: _ccReducer,
       DetailAction.clickBlank: _cbReducer,
+      DetailAction.upLikeData: _likeData,
     },
   );
 }
@@ -29,6 +30,22 @@ DetailState _ccReducer(DetailState state, Action action) {
 DetailState _cbReducer(DetailState state, Action action) {
   final DetailState newState = state.clone();
   newState.isFocus = false;
+
+  return newState;
+}
+
+DetailState _likeData(DetailState state, Action action) {
+  final DetailState newState = state.clone();
+  // var likeData = action.payload ?? {};
+  // newState.isLiked = likeData['isLiked'];
+  // newState.likeCount = likeData['likeData'];
+  // likeData['isLiked'] = !likeData['isLiked'];
+  bool isLiked = state.isLiked;
+
+  int likeCount = state.likeCount;
+  likeCount = isLiked ? likeCount - 1 : likeCount + 1;
+  newState.likeCount = likeCount;
+  newState.isLiked = !state.isLiked;
 
   return newState;
 }

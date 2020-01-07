@@ -5,8 +5,10 @@ enum DetailAction {
   action,
   initAction,
   commentClick,
-
+  onLikeAction,
   clickBlank,
+  upLikeData,
+  onGoToLogin
 }
 
 class DetailActionCreator {
@@ -19,14 +21,22 @@ class DetailActionCreator {
   }
 
   static Action commentClick() {
-    return Action(
-      DetailAction.commentClick,
-    );
+    return Action(DetailAction.commentClick);
   }
 
   static Action clickBlank() {
-    return Action(
-      DetailAction.clickBlank,
-    );
+    return Action(DetailAction.clickBlank);
+  }
+
+  static Action upLikeData() {
+    return Action(DetailAction.upLikeData);
+  }
+
+  static Action likeAction() {
+    return Action(DetailAction.onLikeAction);
+  }
+
+  static Action onGoToLogin() {
+    return Action(DetailAction.onGoToLogin);
   }
 }

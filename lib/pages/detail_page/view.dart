@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:blog_flutter/utils/service_method.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -69,6 +72,25 @@ Widget afterForcus() {
 }
 
 Widget beforeForcus(DetailState state, Dispatch dispatch) {
+  // int likeCount = state.likeCount;
+  // Future<bool> onLikeButtonTap(bool isLiked) async {
+  //   // dispatch(DetailActionCreator.)
+  //   var likeData = {
+  //     'isLiked': isLiked,
+  //     'likeCount': likeCount,
+  //   };
+
+  //   dispatch(DetailActionCreator.likeAction(likeData));
+  //   isLiked = !isLiked;
+  //   likeCount = isLiked ? likeCount - 1 : likeCount + 1;
+
+  //   final Completer<bool> completer = new Completer<bool>();
+
+  //   completer.complete(isLiked);
+
+  //   return completer.future;
+  // }
+
   return Row(
     children: <Widget>[
       Expanded(
@@ -92,25 +114,42 @@ Widget beforeForcus(DetailState state, Dispatch dispatch) {
         flex: 1,
         child: Row(
           children: <Widget>[
-            LikeButton(
-              // isLiked: providerModal.articleData['data']['isLike'],
-              isLiked: state.isLiked,
-              likeBuilder: (bool isLiked) {
-                return Icon(
-                  FontAwesomeIcons.thumbsUp,
-                  color: isLiked ? Colors.blue : Colors.grey,
-                );
-              },
-              likeCount: state.likeCount,
-              // likeCount: 666,
-              onTap: (bool isLiked) {
-                // if (providerModal.isLogin) {
-                //   return onLikeButtonTap(isLiked);
-                // } else {
-                //   Application.router.navigateTo(context, '/login');
-                // }
+            // LikeButton(
+            //   // isLiked: providerModal.articleData['data']['isLike'],
+            //   isLiked: state.isLiked,
+            //   likeBuilder: (bool isLiked) {
+            //     return Icon(
+            //       FontAwesomeIcons.thumbsUp,
+            //       color: isLiked ? Colors.blue : Colors.grey,
+            //     );
+            //   },
+            //   likeCount: state.likeCount,
+            //   // likeCount: 666,
+            //   onTap: (bool isLiked) {
+            //     if (state.userInfo != null) {
+            //       return onLikeButtonTap(isLiked);
+            //     } else {
+            //       dispatch(DetailActionCreator.onGoToLogin());
+            //     }
+            //     // var likeData = {
+            //     //   'isLiked': isLiked,
+            //     //   'likeCount': state.likeCount
+            //     // };
+            //     // return dispatch(DetailActionCreator.likeAction(likeData));
+            //   },
+            // ),
+            IconButton(
+              icon: Icon(
+                FontAwesomeIcons.thumbsUp,
+
+                color: state.userInfo != null ? Colors.blue : Colors.grey,
+                // color: Colors.blue,
+              ),
+              onPressed: () {
+                return dispatch(DetailActionCreator.likeAction());
               },
             ),
+            Text('${state.likeCount}'),
             IconButton(
               icon: Icon(Icons.message),
               iconSize: 16,
