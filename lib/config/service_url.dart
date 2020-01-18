@@ -10,10 +10,12 @@ const servicePath = {
   'getArticleDetail': serviceUrl + 'default/getArticleById',
   'searchSomeThing': serviceUrl + 'default/searchSomeThing',
   'getArticleType': serviceUrl + 'default/getArticleType',
+  'getComments': serviceUrl + 'default/getComments',
   'login': serviceUrl + 'user/checkLogin',
   'comment': serviceUrl + 'user/comment',
   'addArticlePoint': serviceUrl + 'user/addArticlePoint',
   'reduceArticlePoint': serviceUrl + 'user/reduceArticlePoint',
   'uploadImg': serviceUrl + 'default/uploadImg',
-  'changeInfo': serviceUrl + 'user/changeInfo'
+  'changeInfo': serviceUrl + 'user/changeInfo',
+  'addComment': serviceUrl + 'user/addComment'
 };

@@ -48,62 +48,60 @@ Widget personInfomation(MemberState state, Dispatch dispatch) {
       color: Colors.white,
       child: Container(
         height: Adapt.px(140),
-        child: Container(
-          // padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-          child: Row(
-            children: <Widget>[
-              CircleAvatar(
-                radius: 24,
-                backgroundImage: state.userInfo != null
-                    ? NetworkImage(
-                        state.userInfo['userIcon'],
-                      )
-                    : NetworkImage(
-                        'https://mirror-gold-cdn.xitu.io/16cf9de539bc9ae43fb?imageView2/1/w/180/h/180/q/85/interlace/1',
-                      ),
-              ),
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(left: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(top: Adapt.px(20)),
-                        alignment: Alignment.bottomLeft,
-                        child: Text(
-                          state.userInfo != null
-                              ? state.userInfo['userName']
-                              : '登录/注册',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20,
-                          ),
+        // padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+        child: Row(
+          children: <Widget>[
+            CircleAvatar(
+              radius: 24,
+              backgroundImage: state.userInfo != null
+                  ? NetworkImage(
+                      state.userInfo['userIcon'],
+                    )
+                  : NetworkImage(
+                      'https://mirror-gold-cdn.xitu.io/16cf9de539bc9ae43fb?imageView2/1/w/180/h/180/q/85/interlace/1',
+                    ),
+            ),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(top: Adapt.px(20)),
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        state.userInfo != null
+                            ? state.userInfo['userName']
+                            : '登录/注册',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 20,
                         ),
                       ),
-                      Expanded(
-                        child: Text(
-                          state.userInfo != null
-                              ? state.userInfo['disc']
-                              : '简单介绍一下自己吧',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w100,
-                            fontSize: 10,
-                          ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        state.userInfo != null
+                            ? state.userInfo['disc']
+                            : '简单介绍一下自己吧',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w100,
+                          fontSize: 10,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              Align(
-                alignment: FractionalOffset.center,
-                child: Icon(Icons.arrow_right),
-              ),
-            ],
-          ),
+            ),
+            Align(
+              alignment: FractionalOffset.center,
+              child: Icon(Icons.arrow_right),
+            ),
+          ],
         ),
       ),
     ),

@@ -1,14 +1,24 @@
+import 'package:blog_flutter/model/commentList.dart';
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart' hide Action;
+// import 'package:flutter/cupertino.dart' hide Action;
 
 //TODO replace with your own action
 enum DetailAction {
   action,
   initAction,
-  commentClick,
+  onCommentClick,
   onLikeAction,
   clickBlank,
   upLikeData,
-  onGoToLogin
+  onGoToLogin,
+  onNotification,
+  onAddCommentList,
+  addCommentList,
+  bindScroll,
+  getForcus,
+  onAddComment,
+  refreshCommentList
 }
 
 class DetailActionCreator {
@@ -16,12 +26,32 @@ class DetailActionCreator {
     return const Action(DetailAction.action);
   }
 
+  static Action onAddComment() {
+    return const Action(DetailAction.onAddComment);
+  }
+
+  static Action onNotification(ScrollNotification notification) {
+    return Action(DetailAction.onNotification, payload: notification);
+  }
+
+  static Action bindScroll(ScrollController scrollController) {
+    return Action(DetailAction.bindScroll, payload: scrollController);
+  }
+
+  static Action addCommentList(CommentListModel commentListModel) {
+    return Action(DetailAction.addCommentList, payload: commentListModel);
+  }
+
+  static Action refreshCommentList(CommentListModel commentListModel) {
+    return Action(DetailAction.refreshCommentList, payload: commentListModel);
+  }
+
   static Action initAction(var detailData) {
     return Action(DetailAction.initAction, payload: detailData);
   }
 
-  static Action commentClick() {
-    return Action(DetailAction.commentClick);
+  static Action onCommentClick() {
+    return Action(DetailAction.onCommentClick);
   }
 
   static Action clickBlank() {
@@ -38,5 +68,13 @@ class DetailActionCreator {
 
   static Action onGoToLogin() {
     return Action(DetailAction.onGoToLogin);
+  }
+
+  static Action onAddCommentList() {
+    return Action(DetailAction.onNotification);
+  }
+
+  static Action getForcus() {
+    return const Action(DetailAction.getForcus);
   }
 }

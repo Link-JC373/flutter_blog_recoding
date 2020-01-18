@@ -1,3 +1,4 @@
+import 'package:blog_flutter/model/commentList.dart';
 import 'package:fish_redux/fish_redux.dart';
 
 import 'action.dart';
@@ -8,9 +9,12 @@ Reducer<DetailState> buildReducer() {
     <Object, Reducer<DetailState>>{
       DetailAction.action: _onAction,
       DetailAction.initAction: _initReducer,
-      DetailAction.commentClick: _ccReducer,
+      DetailAction.getForcus: _getForcus,
       DetailAction.clickBlank: _cbReducer,
       DetailAction.upLikeData: _likeData,
+      DetailAction.addCommentList: _addCommentList,
+      DetailAction.bindScroll: _bindScroll,
+      DetailAction.refreshCommentList: _refreshCommentList,
     },
   );
 }
@@ -20,8 +24,37 @@ DetailState _onAction(DetailState state, Action action) {
   return newState;
 }
 
-DetailState _ccReducer(DetailState state, Action action) {
+DetailState _bindScroll(DetailState state, Action action) {
   final DetailState newState = state.clone();
+  newState.scrollController = action.payload;
+  return newState;
+}
+
+DetailState _addCommentList(DetailState state, Action action) {
+  final DetailState newState = state.clone();
+  CommentListModel commentList = action.payload ??
+      CommentListModel.fromParams(results: List<CommentListResult>());
+  print(newState.commentList.page);
+  print(commentList.page);
+  newState.commentList.page = commentList.page;
+  newState.commentList.likedList = commentList.likedList;
+  newState.commentList.totalPages = commentList.totalPages;
+  newState.commentList.totalResults = commentList.totalResults;
+  newState.commentList.results.addAll(commentList.results);
+  return newState;
+}
+
+DetailState _refreshCommentList(DetailState state, Action action) {
+  final DetailState newState = state.clone();
+  CommentListModel commentList = action.payload ??
+      CommentListModel.fromParams(results: List<CommentListResult>());
+  newState.commentList = commentList;
+  return newState;
+}
+
+DetailState _getForcus(DetailState state, Action action) {
+  final DetailState newState = state.clone();
+
   newState.isFocus = true;
 
   return newState;

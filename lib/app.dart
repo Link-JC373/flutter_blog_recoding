@@ -1,4 +1,5 @@
 import 'package:blog_flutter/pages/changeInfo_page/page.dart';
+import 'package:blog_flutter/pages/commentDetail_page/page.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'global_store/state.dart';
@@ -20,6 +21,7 @@ Widget createApp() {
       'index_page': IndexPage(),
       'login_page': LoginPage(),
       'changeInfo_page': ChangeInfoPage(),
+      'commentDetail_page': CommentDetailPage(),
     },
     visitor: (String path, Page<Object, dynamic> page) {
       /// 只有特定的范围的 Page 才需要建立和 AppStore 的连接关系

@@ -1,4 +1,6 @@
 import 'package:blog_flutter/global_store/state.dart';
+import 'package:blog_flutter/model/commentList.dart';
+import 'package:blog_flutter/pages/detail_page/comment_component/state.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,11 @@ class DetailState implements GlobalBaseState, Cloneable<DetailState> {
   bool isLiked;
   int likeCount;
 
+  TextEditingController textController = new TextEditingController();
+  ScrollController scrollController = new ScrollController();
+  CommentListModel commentList =
+      new CommentListModel.fromParams(results: List<CommentListResult>());
+
   @override
   DetailState clone() {
     return DetailState()
@@ -19,7 +26,9 @@ class DetailState implements GlobalBaseState, Cloneable<DetailState> {
       ..articleContent = articleContent
       ..isLiked = isLiked
       ..likeCount = likeCount
-      ..userInfo = userInfo;
+      ..commentList = commentList
+      ..userInfo = userInfo
+      ..scrollController = scrollController;
   }
 
   @override
@@ -37,3 +46,11 @@ DetailState initState(Map<String, dynamic> args) {
   // args['userId'] != null ? state.userId = args['userId'] : state.userId = 0;
   return state;
 }
+
+// class CommentConnect extends ConnOp<DetailState, CommentState> {
+//   @override
+//   CommentState get(DetailState state) {
+//     CommentState subState = CommentState();
+//     return subState;
+//   }
+// }
