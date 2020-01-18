@@ -1,16 +1,4 @@
 # blog_flutter
 
-A new Flutter project.
+拿来练手的flutter小项目，基于之前的blog代码使用fish-redux重构，并添加新内容，后端内容暂未部署到服务器上。
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
