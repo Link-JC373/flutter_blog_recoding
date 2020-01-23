@@ -18,6 +18,7 @@ Widget buildView(
         style: TextStyle(color: Colors.black),
       ),
       backgroundColor: Colors.white,
+      // ac
       iconTheme: IconThemeData(color: Colors.black),
     ),
     body: state.articleContent != null
@@ -29,14 +30,79 @@ Widget buildView(
               color: Colors.grey[200],
 
               child: Column(
+                // mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Expanded(
                     child: SizedBox(
                       child: ListView(
                         controller: state.scrollController,
                         // shrinkWrap: true,
+
                         children: <Widget>[
-                          Text('这里放作者简介'),
+                          Container(
+                            padding: EdgeInsets.all(Adapt.px(20.0)),
+                            color: Colors.white,
+                            child: IntrinsicHeight(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                      radius: 24,
+                                      backgroundImage: NetworkImage(
+                                        state.author.userIcon,
+                                      )),
+                                  Expanded(
+                                    child: Container(
+                                      margin: EdgeInsets.only(left: 20),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            state.author.username,
+                                            textAlign: TextAlign.start,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                top: Adapt.px(15)),
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              state.author.disc,
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w100,
+                                                fontSize: 10,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  FlatButton(
+                                    child: Container(
+                                      padding: EdgeInsets.fromLTRB(
+                                          Adapt.px(40),
+                                          Adapt.px(10),
+                                          Adapt.px(40),
+                                          Adapt.px(10)),
+                                      child: Text(
+                                        '+   关注',
+                                        style: TextStyle(color: Colors.green),
+                                      ),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 0.5, color: Colors.green)),
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                           Container(
                             color: Colors.white,
                             padding: EdgeInsets.all(Adapt.px(20)),
@@ -46,7 +112,7 @@ Widget buildView(
                           ),
                           Container(
                             margin: EdgeInsets.only(top: Adapt.px(20.0)),
-                            color: Colors.white,
+                            // color: Colors.white,
                             child: ListView.builder(
                               shrinkWrap: true,
                               physics: new NeverScrollableScrollPhysics(),
@@ -149,7 +215,9 @@ Widget beforeForcus(DetailState state, Dispatch dispatch) {
                 icon: Icon(
                   FontAwesomeIcons.thumbsUp,
 
-                  color: state.userInfo != null ? Colors.blue : Colors.grey,
+                  color: state.userInfo != null && state.isLiked
+                      ? Colors.blue
+                      : Colors.grey,
                   // color: Colors.blue,
                 ),
                 onPressed: () {

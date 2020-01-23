@@ -24,10 +24,22 @@ class _ComListConnector extends ConnOp<DetailState, List<ItemBean>> {
     List<ItemBean> items = [];
     if (state.commentList?.results != null) {
       if (state.commentList.results.isNotEmpty == true) {
+        int index = 0;
         for (var i in state.commentList.results) {
-          print(i.ctaId);
+          // print(i.ctaId);
           CommentState subState = CommentState();
           subState.clr = i;
+          subState.userInfo = state.userInfo;
+          if (state.userInfo == null) {
+            subState.isLiked = false;
+          } else if (i.likedList.indexOf(state.userInfo['userId']) == -1) {
+            subState.isLiked = false;
+          } else {
+            subState.isLiked = true;
+          }
+          subState.index = index;
+          index++;
+
           items.add(ItemBean('commentPart', subState));
         }
       }

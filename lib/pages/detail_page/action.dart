@@ -18,7 +18,7 @@ enum DetailAction {
   bindScroll,
   getForcus,
   onAddComment,
-  refreshCommentList
+  refreshCommentList,
 }
 
 class DetailActionCreator {

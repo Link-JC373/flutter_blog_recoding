@@ -82,6 +82,8 @@ Future _init(Action action, Context<DetailState> ctx) async {
   ScrollController scrollController = ScrollController();
   int pageNum = 1;
   scrollController.addListener(() {
+    // print(ctx.state.scrollController.position.pixels);
+
     if (ctx.state.scrollController.position.pixels ==
         ctx.state.scrollController.position.maxScrollExtent) {
       pageNum++;

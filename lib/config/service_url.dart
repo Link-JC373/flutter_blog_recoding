@@ -11,11 +11,14 @@ const servicePath = {
   'searchSomeThing': serviceUrl + 'default/searchSomeThing',
   'getArticleType': serviceUrl + 'default/getArticleType',
   'getComments': serviceUrl + 'default/getComments',
+  'getToComments': serviceUrl + 'default/getToComments',
   'login': serviceUrl + 'user/checkLogin',
   'comment': serviceUrl + 'user/comment',
   'addArticlePoint': serviceUrl + 'user/addArticlePoint',
   'reduceArticlePoint': serviceUrl + 'user/reduceArticlePoint',
   'uploadImg': serviceUrl + 'default/uploadImg',
   'changeInfo': serviceUrl + 'user/changeInfo',
-  'addComment': serviceUrl + 'user/addComment'
+  'addComment': serviceUrl + 'user/addComment',
+  'addToComment': serviceUrl + 'user/addToComment',
+  'changeCommentLikes': serviceUrl + 'user/changeCommentLikes',
 };

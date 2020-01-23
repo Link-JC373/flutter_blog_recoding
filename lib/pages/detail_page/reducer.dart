@@ -1,4 +1,5 @@
 import 'package:blog_flutter/model/commentList.dart';
+import 'package:blog_flutter/model/user.dart';
 import 'package:fish_redux/fish_redux.dart';
 
 import 'action.dart';
@@ -37,7 +38,6 @@ DetailState _addCommentList(DetailState state, Action action) {
   print(newState.commentList.page);
   print(commentList.page);
   newState.commentList.page = commentList.page;
-  newState.commentList.likedList = commentList.likedList;
   newState.commentList.totalPages = commentList.totalPages;
   newState.commentList.totalResults = commentList.totalResults;
   newState.commentList.results.addAll(commentList.results);
@@ -90,6 +90,6 @@ DetailState _initReducer(DetailState state, Action action) {
   newState.isLiked = detailData['data']['isLike'];
   newState.articleContent = detailData['data']['article_content'];
   newState.likeCount = detailData['data']['likeCount'];
-  print(newState.articleContent);
+  newState.author = User(detailData['data']['user']);
   return newState;
 }
