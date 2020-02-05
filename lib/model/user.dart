@@ -19,9 +19,9 @@ class User {
           : User.fromJson(jsonStr);
 
   User.fromJson(jsonRes) {
-    userId = jsonRes['id'];
-    username = jsonRes['username'];
-    userIcon = jsonRes['user_icon'];
+    userId = jsonRes['id'] ?? jsonRes['userId'];
+    username = jsonRes['username'] ?? jsonRes['userName'];
+    userIcon = jsonRes['user_icon'] ?? jsonRes['userIcon'];
     disc = jsonRes['disc'];
   }
 }

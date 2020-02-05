@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class HomeState implements Cloneable<HomeState> {
   List<Widget> tabs;
-
-  List<int> tabNumber;
   TabController tabController;
+  List<int> tabNumber;
+
   String url;
 
   bool isShowAdd;

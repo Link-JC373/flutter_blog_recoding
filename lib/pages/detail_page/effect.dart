@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:blog_flutter/model/commentList.dart';
+import 'package:blog_flutter/model/favorites.dart';
+import 'package:blog_flutter/model/user.dart';
 import 'package:blog_flutter/utils/service_method.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
@@ -18,10 +20,30 @@ Effect<DetailState> buildEffect() {
     DetailAction.onGoToLogin: _onGoToLogin,
     DetailAction.onCommentClick: _onCommentClick,
     DetailAction.onAddComment: _onAddComment,
+    DetailAction.onGetFavState: _onGetFavState,
+    DetailAction.onJumpToResume: _onJumpToResume,
   });
 }
 
 void _onAction(Action action, Context<DetailState> ctx) {}
+void _onJumpToResume(Action action, Context<DetailState> ctx) {
+  bool flag = false;
+  User user = action.payload;
+  // print('----------------->');
+  // print(user.userId);
+  if (ctx.state.userInfo != null) {
+    // print(ctx.state.userInfo['id']);
+
+    if (ctx.state.userInfo['userId'] == user.userId) {
+      flag = true;
+    }
+  }
+  Navigator.of(ctx.context).pushNamed('resume_page', arguments: {
+    'user': user,
+    'isSelf': flag,
+  });
+}
+
 Future _onAddComment(Action action, Context<DetailState> ctx) async {
   if (ctx.state.textController.text != null) {
     var formData = {
@@ -59,7 +81,9 @@ void _onCommentClick(Action action, Context<DetailState> ctx) {
 }
 
 void _onGoToLogin(Action action, Context<DetailState> ctx) {
-  Navigator.of(ctx.context).pushNamed('login_page');
+  Navigator.of(ctx.context).pushNamed('login_page').then((res) {
+    _init(action, ctx);
+  });
 }
 
 Future _init(Action action, Context<DetailState> ctx) async {
@@ -116,9 +140,7 @@ Future _onLikeEffect(Action action, Context<DetailState> ctx) async {
 
     ctx.dispatch(DetailActionCreator.upLikeData());
   } else {
-    Navigator.of(ctx.context).pushNamed('login_page').then((res) {
-      _init(action, ctx);
-    });
+    _onGoToLogin(action, ctx);
   }
 }
 
@@ -138,4 +160,16 @@ Future _onLoadMore(Action action, Context<DetailState> ctx,
     ctx.dispatch(DetailActionCreator.addCommentList(model));
     // ctx.dispatch(ComListAction.add());
   });
+}
+
+Future _onGetFavState(Action action, Context<DetailState> ctx) async {
+  var data = {
+    'userId': ctx.state.userInfo['userId'],
+  };
+
+  var res = await DioUtil.request('getFavorites', formData: data);
+  FavListModel favListModel;
+  print(res);
+  if (res != null) favListModel = FavListModel(res);
+  ctx.dispatch(DetailActionCreator.getFavList(favListModel));
 }

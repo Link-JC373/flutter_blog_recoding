@@ -1,3 +1,4 @@
+import 'package:blog_flutter/pages/detail_page/action.dart';
 import 'package:blog_flutter/utils/adapt.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +33,16 @@ Widget buildView(
             Container(
               padding: EdgeInsets.all(Adapt.screenW() * 0.03),
               child: Align(
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(
-                    state.clr.user.userIcon,
-                  ),
+                child: GestureDetector(
+                  onTap: () {
+                    dispatch(
+                        DetailActionCreator.onJumpToResume(state.clr.user));
+                  },
+                  child: CircleAvatar(
+                      radius: 24,
+                      backgroundImage: NetworkImage(
+                        state.clr.user.userIcon,
+                      )),
                 ),
               ),
             ),

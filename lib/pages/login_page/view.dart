@@ -19,15 +19,17 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
         height: headerHeight,
         width: Adapt.screenW(),
         decoration: BoxDecoration(
-            color: Colors.black87,
-            image: DecorationImage(
-                colorFilter: ColorFilter.mode(Colors.black, BlendMode.color),
-                fit: BoxFit.cover,
-                image: CachedNetworkImageProvider(
-                    'https://image.tmdb.org/t/p/original/mAkPFEWkwKz9nmKyCiuETfTdpgX.jpg'))),
+          color: Colors.blue[600],
+          image: DecorationImage(
+            // colorFilter: ColorFilter.mode(Colors.black87, BlendMode.color),
+            fit: BoxFit.cover,
+            image: CachedNetworkImageProvider(
+                'https://img1.gamersky.com/image2019/11/20191115_lr_red_176_10/gamersky_008small_016_201911152037474.jpg'),
+          ),
+        ),
         alignment: Alignment.center,
         child: Container(
-          color: Color.fromRGBO(20, 20, 20, 0.8),
+          // color: Color.fromRGBO(20, 20, 20, 0.8),
           alignment: Alignment.center,
           height: headerHeight,
           width: Adapt.screenW(),
@@ -42,7 +44,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
               ),
             )),
             child: Image.asset(
-              'assets/images/tmbd_blue.png',
+              'assets/images/play_blue.png',
               width: Adapt.px(150),
               height: Adapt.px(150),
               color: Colors.white,
@@ -95,7 +97,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                     .animate(submitWidth)
                     .value,
                 child: FlatButton(
-                  color: Colors.black87,
+                  color: Colors.blue[600],
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(Adapt.px(50))),
                   child: Text(
@@ -246,7 +248,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                               curve: Curves.ease,
                             ))),
                     child: GestureDetector(
-                      onTap: () => {},
+                      onTap: () => {dispatch(LoginActionCreator.onRegister())},
                       child: Text(
                         'Sign up for an account',
                         style: TextStyle(color: Colors.grey),

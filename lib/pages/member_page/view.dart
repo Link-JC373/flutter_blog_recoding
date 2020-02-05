@@ -28,7 +28,7 @@ Widget content(MemberState state, Dispatch dispatch) {
     mainAxisSize: MainAxisSize.max,
     children: <Widget>[
       personInfomation(state, dispatch),
-      aboutMe(),
+      aboutMe(state, dispatch),
     ],
   );
 }
@@ -83,9 +83,9 @@ Widget personInfomation(MemberState state, Dispatch dispatch) {
                     ),
                     Expanded(
                       child: Text(
-                        state.userInfo != null
-                            ? state.userInfo['disc']
-                            : '简单介绍一下自己吧',
+                        state.userInfo == null
+                            ? '简单介绍一下自己吧'
+                            : state.userInfo['disc'] ?? '简单介绍一下自己吧',
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontWeight: FontWeight.w100,
@@ -108,7 +108,7 @@ Widget personInfomation(MemberState state, Dispatch dispatch) {
   );
 }
 
-Widget aboutMe() {
+Widget aboutMe(MemberState state, Dispatch dispatch) {
   // var screenSize = MediaQuery.of(context).size;
 
   return Column(
@@ -174,7 +174,9 @@ Widget aboutMe() {
       Container(
         child: FlatButton(
           color: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            dispatch(MemberActionCreator.onJumpToFav());
+          },
           child: Container(
             height: Adapt.px(100),
 

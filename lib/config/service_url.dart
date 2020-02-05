@@ -13,6 +13,7 @@ const servicePath = {
   'getComments': serviceUrl + 'default/getComments',
   'getToComments': serviceUrl + 'default/getToComments',
   'login': serviceUrl + 'user/checkLogin',
+  'register': serviceUrl + 'user/register',
   'comment': serviceUrl + 'user/comment',
   'addArticlePoint': serviceUrl + 'user/addArticlePoint',
   'reduceArticlePoint': serviceUrl + 'user/reduceArticlePoint',
@@ -21,4 +22,10 @@ const servicePath = {
   'addComment': serviceUrl + 'user/addComment',
   'addToComment': serviceUrl + 'user/addToComment',
   'changeCommentLikes': serviceUrl + 'user/changeCommentLikes',
+  'getFavorites': serviceUrl + 'user/getFavorites',
+  'addFavorites': serviceUrl + 'user/addFavorites',
+  'favArticle': serviceUrl + 'user/favArticle',
+  'cancelFav': serviceUrl + 'user/cancelFav',
+  'getMyArticle': serviceUrl + 'user/getMyArticle',
+  'getMyComment': serviceUrl + 'default/getMyComment',
 };

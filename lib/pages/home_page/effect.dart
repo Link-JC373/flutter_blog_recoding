@@ -31,7 +31,6 @@ void _initTabs(Action action, Context<HomeState> ctx) {
   _tabController.addListener(() {
     println(_tabController.index);
   });
-  print(tabs);
   ctx.dispatch(HomeActionCreator.initTabs({
     'tabs': tabs,
     'tabNumber': tabNumber,

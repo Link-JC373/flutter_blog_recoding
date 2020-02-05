@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:blog_flutter/utils/adapt.dart';
 import 'package:blog_flutter/utils/service_method.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:flutter_shop/provider/login_provider.dart';
 // import 'package:flutter_shop/utils/service_method.dart';
 // import 'package:provider/provider.dart';
@@ -46,7 +48,7 @@ class _ShowArticleListState extends State<ShowArticleList> {
     super.initState();
     setState(() {
       _count = 10;
-      pageNum = 0;
+      pageNum = 1;
     });
     var formPage = {
       'pageSize': pageSize,
@@ -142,71 +144,88 @@ class ArticleList extends StatelessWidget {
     if (articleList.length != 0) {
       print(index);
       //Card本身似乎没有点击事件，使用 InkWell 包裹使其能够触发点击事件
-      return InkWell(
-        onTap: () {
-          // Application.router.navigateTo(
-          //   context,
-          //   '/detail?id=${articleList[index]['id']}&userId=${providerModal.userId}',
-          //   transition: TransitionType.fadeIn,
-          // );
-          Navigator.of(context).pushNamed('detail_page', arguments: {
-            'id': articleList[index]['id'],
-            'userId': userId,
-          });
-        },
-        child: Card(
-          elevation: 5.0,
+      return Container(
+        color: Colors.white,
+        margin: EdgeInsets.only(top: Adapt.px(20.0)),
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed('detail_page', arguments: {
+              'id': articleList[index]['id'],
+              'userId': userId,
+            });
+          },
           child: Container(
-            height: 180.0,
-            padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+            height: Adapt.px(370),
+            padding: EdgeInsets.all(Adapt.px(30)),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(
-                          child: Text(articleList[index]['user']['username']),
-                        ),
+                Row(
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 12,
+                      backgroundImage: NetworkImage(
+                        articleList[index]['user']['user_icon'],
                       ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          child:
-                              Text(articleList[index]['blog_type']['typename']),
-                        ),
+                    ),
+                    Container(
+                      width: Adapt.px(20),
+                    ),
+                    Text(articleList[index]['user']['username']),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child:
+                            Text(articleList[index]['blog_type']['typename']),
                       ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(top: Adapt.px(20)),
                   child: Text(
                     articleList[index]['title'],
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: Adapt.px(35),
+                    ),
                   ),
                 ),
                 Container(
-                  height: 50,
-                  margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  alignment: Alignment.topLeft,
-                  child: Text('这里会有一些简介~~~~~~~~'),
+                  padding: EdgeInsets.only(top: Adapt.px(20)),
+                  height: Adapt.px(150),
+                  child: Text(
+                    articleList[index]['introduce'] == null
+                        ? '这个人居然不写简介'
+                        : articleList[index]['introduce'],
+                    softWrap: true,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 Container(
                   child: Row(
                     children: <Widget>[
                       Icon(
-                        Icons.thumb_up,
+                        FontAwesomeIcons.thumbsUp,
                         size: 12,
                       ),
-                      Text('666'),
-                      Text('   '),
+                      Container(
+                        width: Adapt.px(20),
+                      ),
+                      Text('${articleList[index]['likeCount']}'),
+                      Container(
+                        width: Adapt.px(40),
+                      ),
                       Icon(
                         Icons.message,
                         size: 12,
                       ),
-                      Text('233'),
+                      Container(
+                        width: Adapt.px(20),
+                      ),
+                      Text(
+                          '${articleList[index]['comments'].length + articleList[index]['comments_to_comments'].length}'),
                     ],
                   ),
                 ),
@@ -214,6 +233,67 @@ class ArticleList extends StatelessWidget {
             ),
           ),
         ),
+        //  Card(
+        //   elevation: 5.0,
+        //   child: Container(
+        //     height: 180.0,
+        //     padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+        //     child: Column(
+        //       children: <Widget>[
+        //         Container(
+        //           child: Row(
+        //             children: <Widget>[
+        //               Expanded(
+        //                 child: Container(
+        //                   child: Text(articleList[index]['user']['username']),
+        //                 ),
+        //               ),
+        //               Expanded(
+        //                 child: Container(
+        //                   alignment: Alignment.centerRight,
+        //                   child:
+        //                       Text(articleList[index]['blog_type']['typename']),
+        //                 ),
+        //               ),
+        //             ],
+        //           ),
+        //         ),
+        //         Container(
+        //           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+        //           alignment: Alignment.centerLeft,
+        //           child: Text(
+        //             articleList[index]['title'],
+        //             style: TextStyle(fontWeight: FontWeight.w500),
+        //           ),
+        //         ),
+        //         Container(
+        //           height: 50,
+        //           margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+        //           alignment: Alignment.topLeft,
+        //           child: Text(articleList[index]['introduce']),
+        //         ),
+        //         Container(
+        //           child: Row(
+        //             children: <Widget>[
+        //               Icon(
+        //                 Icons.thumb_up,
+        //                 size: 12,
+        //               ),
+        //               Text('${articleList[index]['likeCount']}'),
+        //               Text('   '),
+        //               Icon(
+        //                 Icons.message,
+        //                 size: 12,
+        //               ),
+        //               Text(
+        //                   '${articleList[index]['comments'].length + articleList[index]['comments_to_comments'].length}'),
+        //             ],
+        //           ),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       );
     } else {
       return Center(

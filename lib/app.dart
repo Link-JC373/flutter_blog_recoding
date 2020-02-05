@@ -1,5 +1,8 @@
+import 'package:blog_flutter/pages/addFav_page/page.dart';
 import 'package:blog_flutter/pages/changeInfo_page/page.dart';
 import 'package:blog_flutter/pages/commentDetail_page/page.dart';
+import 'package:blog_flutter/pages/favorites_page/page.dart';
+import 'package:blog_flutter/pages/resume_page/page.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'global_store/state.dart';
@@ -9,6 +12,7 @@ import 'pages/home_page/page.dart';
 import 'pages/login_page/page.dart';
 import 'pages/member_page/page.dart';
 import 'pages/detail_page/page.dart';
+import 'pages/register_page/page.dart';
 // import 'global_store/state.dart';
 // import 'global_store/store.dart';
 
@@ -20,8 +24,12 @@ Widget createApp() {
       'member_page': MemberPage(),
       'index_page': IndexPage(),
       'login_page': LoginPage(),
+      'register_page': RegisterPage(),
       'changeInfo_page': ChangeInfoPage(),
       'commentDetail_page': CommentDetailPage(),
+      'favorites_page': FavoritesPage(),
+      'addFav_page': AddFavPage(),
+      'resume_page': ResumePage(),
     },
     visitor: (String path, Page<Object, dynamic> page) {
       /// 只有特定的范围的 Page 才需要建立和 AppStore 的连接关系

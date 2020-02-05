@@ -1,4 +1,6 @@
 import 'package:blog_flutter/model/commentList.dart';
+import 'package:blog_flutter/model/favorites.dart';
+import 'package:blog_flutter/model/user.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 // import 'package:flutter/cupertino.dart' hide Action;
@@ -19,6 +21,9 @@ enum DetailAction {
   getForcus,
   onAddComment,
   refreshCommentList,
+  getFavList,
+  onGetFavState,
+  onJumpToResume,
 }
 
 class DetailActionCreator {
@@ -26,8 +31,20 @@ class DetailActionCreator {
     return const Action(DetailAction.action);
   }
 
+  static Action onJumpToResume(User user) {
+    return Action(DetailAction.onJumpToResume, payload: user);
+  }
+
   static Action onAddComment() {
     return const Action(DetailAction.onAddComment);
+  }
+
+  static Action onGetFavState() {
+    return const Action(DetailAction.onGetFavState);
+  }
+
+  static Action getFavList(FavListModel favListModel) {
+    return Action(DetailAction.getFavList, payload: favListModel);
   }
 
   static Action onNotification(ScrollNotification notification) {

@@ -18,8 +18,10 @@ Widget buildView(
         style: TextStyle(color: Colors.black),
       ),
       backgroundColor: Colors.white,
-      // ac
       iconTheme: IconThemeData(color: Colors.black),
+      actions: <Widget>[
+        viewService.buildComponent('actionMenu'),
+      ],
     ),
     body: state.articleContent != null
         ? GestureDetector(
@@ -45,11 +47,18 @@ Widget buildView(
                             child: IntrinsicHeight(
                               child: Row(
                                 children: <Widget>[
-                                  CircleAvatar(
-                                      radius: 24,
-                                      backgroundImage: NetworkImage(
-                                        state.author.userIcon,
-                                      )),
+                                  GestureDetector(
+                                    onTap: () {
+                                      dispatch(
+                                          DetailActionCreator.onJumpToResume(
+                                              state.author));
+                                    },
+                                    child: CircleAvatar(
+                                        radius: 24,
+                                        backgroundImage: NetworkImage(
+                                          state.author.userIcon,
+                                        )),
+                                  ),
                                   Expanded(
                                     child: Container(
                                       margin: EdgeInsets.only(left: 20),

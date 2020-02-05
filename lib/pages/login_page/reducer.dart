@@ -8,7 +8,7 @@ Reducer<LoginState> buildReducer() {
     <Object, Reducer<LoginState>>{
       LoginAction.action: _onAction,
       LoginAction.accountChange: _onAccountChanged,
-      LoginAction.pwdChange: _onPwdChanged
+      LoginAction.pwdChange: _onPwdChanged,
     },
   );
 }

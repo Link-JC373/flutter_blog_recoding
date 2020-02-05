@@ -1,4 +1,5 @@
 import 'package:blog_flutter/model/commentList.dart';
+import 'package:blog_flutter/model/favorites.dart';
 import 'package:blog_flutter/model/user.dart';
 import 'package:fish_redux/fish_redux.dart';
 
@@ -16,12 +17,23 @@ Reducer<DetailState> buildReducer() {
       DetailAction.addCommentList: _addCommentList,
       DetailAction.bindScroll: _bindScroll,
       DetailAction.refreshCommentList: _refreshCommentList,
+      DetailAction.getFavList: _getFavList,
     },
   );
 }
 
 DetailState _onAction(DetailState state, Action action) {
   final DetailState newState = state.clone();
+  return newState;
+}
+
+DetailState _getFavList(DetailState state, Action action) {
+  final DetailState newState = state.clone();
+  print('------------>FavList');
+  print(action.payload);
+  newState.favListModel =
+      action.payload ?? FavListModel.fromParams(results: List<FavListResult>());
+  print(newState.favListModel.results.length);
   return newState;
 }
 
@@ -91,5 +103,6 @@ DetailState _initReducer(DetailState state, Action action) {
   newState.articleContent = detailData['data']['article_content'];
   newState.likeCount = detailData['data']['likeCount'];
   newState.author = User(detailData['data']['user']);
+  newState.havingFav = detailData['data']['isFav'];
   return newState;
 }

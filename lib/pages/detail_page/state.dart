@@ -1,5 +1,6 @@
 import 'package:blog_flutter/global_store/state.dart';
 import 'package:blog_flutter/model/commentList.dart';
+import 'package:blog_flutter/model/favorites.dart';
 import 'package:blog_flutter/model/user.dart';
 import 'package:blog_flutter/pages/detail_page/comment_component/state.dart';
 import 'package:fish_redux/fish_redux.dart';
@@ -13,7 +14,9 @@ class DetailState implements GlobalBaseState, Cloneable<DetailState> {
   bool isLiked;
   int likeCount;
   User author;
+  bool havingFav = false;
 
+  FavListModel favListModel;
   TextEditingController textController = new TextEditingController();
   ScrollController scrollController = new ScrollController();
   CommentListModel commentList =
@@ -31,6 +34,8 @@ class DetailState implements GlobalBaseState, Cloneable<DetailState> {
       ..commentList = commentList
       ..userInfo = userInfo
       ..author = author
+      ..havingFav = havingFav
+      ..favListModel = favListModel
       ..scrollController = scrollController;
   }
 

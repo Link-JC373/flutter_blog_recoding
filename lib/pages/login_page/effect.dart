@@ -18,8 +18,9 @@ Effect<LoginState> buildEffect() {
     Lifecycle.build: _onBuild,
     Lifecycle.dispose: _onDispose,
     LoginAction.action: _onAction,
-    LoginAction.action: _onGoBack,
+    LoginAction.onGoBack: _onGoBack,
     LoginAction.onLoginClicked: _onLoginClicked,
+    LoginAction.onRegister: _onRegister,
   });
 }
 
@@ -27,6 +28,10 @@ void _onAction(Action action, Context<LoginState> ctx) {}
 
 void _onGoBack(Action action, Context<LoginState> ctx) {
   Navigator.of(ctx.context).pop();
+}
+
+void _onRegister(Action action, Context<LoginState> ctx) {
+  Navigator.of(ctx.context).pushNamed('register_page');
 }
 
 void _onInit(Action action, Context<LoginState> ctx) {
@@ -46,14 +51,15 @@ void _onBuild(Action action, Context<LoginState> ctx) {
 
 void _onDispose(Action action, Context<LoginState> ctx) {
   ctx.state.animationController.dispose();
+  ctx.state.submitAnimationController.dispose();
+
   ctx.state.accountFocusNode.dispose();
   ctx.state.pwdFocusNode.dispose();
-  ctx.state.submitAnimationController.dispose();
 }
 
 Future _onLoginClicked(Action action, Context<LoginState> ctx) async {
   ctx.state.submitAnimationController.forward();
-  print(ctx.state.passWord);
+  // print(ctx.state.passWord);
   if (ctx.state.userName != '' && ctx.state.passWord != '') {
     var loginData = {
       'userName': ctx.state.userName,
@@ -91,7 +97,7 @@ Future _onLoginClicked(Action action, Context<LoginState> ctx) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       print('getToken-------->${data['token']}');
       prefs.setString('token', data['token']);
-      Navigator.of(ctx.context).pop();
+      Navigator.of(ctx.context).pop(true);
     }
   } else {
     Fluttertoast.showToast(

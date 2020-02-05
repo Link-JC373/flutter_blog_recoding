@@ -89,13 +89,10 @@ class DioUtil {
       InterceptorsWrapper(onRequest: (RequestOptions options) {
         dio.lock();
         Future<dynamic> future = Future(() async {
-          print("请求拦截开始");
           SharedPreferences prefs = await SharedPreferences.getInstance();
           return prefs.getString('token');
         });
         return future.then((value) {
-          print('header-token-------------------->>');
-          print(value);
           options.headers["token"] = value;
           return options;
         }).whenComplete(() => dio.unlock());

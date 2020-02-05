@@ -45,9 +45,12 @@ Widget homeBuildView(
                 return false;
               },
               // child: viewService.buildComponent('list$number'),
-              child: ShowArticleList(
-                url: 'getArticleList',
-                articleTypeId: number,
+              child: Container(
+                color: Colors.grey[200],
+                child: ShowArticleList(
+                  url: 'getArticleList',
+                  articleTypeId: number,
+                ),
               ),
             );
           }).toList()),

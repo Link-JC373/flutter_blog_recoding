@@ -8,11 +8,16 @@ enum LoginAction {
   onLoginClicked,
   accountChange,
   pwdChange,
+  onRegister,
 }
 
 class LoginActionCreator {
   static Action onAction() {
     return const Action(LoginAction.action);
+  }
+
+  static Action onRegister() {
+    return const Action(LoginAction.onRegister);
   }
 
   static Action changePage(int index) {
