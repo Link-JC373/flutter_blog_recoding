@@ -37,6 +37,7 @@ class _ComListConnector extends ConnOp<DetailState, List<ItemBean>> {
           } else {
             subState.isLiked = true;
           }
+          subState.articleId = state.articleId;
           subState.index = index;
           index++;
 

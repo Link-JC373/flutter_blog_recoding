@@ -9,6 +9,7 @@ class CommentDetailState
     implements GlobalBaseState, Cloneable<CommentDetailState> {
   CommentListResult clr;
 
+  int articleId;
   TextEditingController textController = TextEditingController();
   bool isFocus = false;
 
@@ -20,6 +21,7 @@ class CommentDetailState
       ..clr = clr
       ..userInfo = userInfo
       ..textController = textController
+      ..articleId = articleId
       ..addCommentInfo = addCommentInfo;
   }
 
@@ -33,6 +35,6 @@ class CommentDetailState
 CommentDetailState initState(Map<String, dynamic> args) {
   CommentDetailState newState = CommentDetailState();
   newState.clr = args['clr'];
-
+  newState.articleId = args['articleId'];
   return newState;
 }

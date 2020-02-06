@@ -8,12 +8,14 @@ class CommentState implements Cloneable<CommentState> {
   bool isLiked = false;
   var userInfo;
   int index = 0;
+  int articleId;
   @override
   CommentState clone() {
     return CommentState()
       ..clr = clr
       ..isLiked = isLiked
       ..userInfo = userInfo
+      ..articleId = articleId
       ..index = index;
   }
 }

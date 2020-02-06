@@ -53,6 +53,7 @@ Future _onAddToComment(Action action, Context<CommentDetailState> ctx) async {
       'userId': ctx.state.userInfo['userId'],
       'tcId': ctx.state.addCommentInfo['tcId'],
       'tcName': ctx.state.addCommentInfo['tcName'],
+      // 'articleId':ctx.state.clr
       'commentId': ctx.state.clr.ctaId,
       'commentContent': ctx.state.textController.text
     };

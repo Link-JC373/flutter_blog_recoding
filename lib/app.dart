@@ -1,6 +1,7 @@
 import 'package:blog_flutter/pages/addFav_page/page.dart';
 import 'package:blog_flutter/pages/changeInfo_page/page.dart';
 import 'package:blog_flutter/pages/commentDetail_page/page.dart';
+import 'package:blog_flutter/pages/favDetail_page/page.dart';
 import 'package:blog_flutter/pages/favorites_page/page.dart';
 import 'package:blog_flutter/pages/resume_page/page.dart';
 import 'package:fish_redux/fish_redux.dart';
@@ -30,6 +31,7 @@ Widget createApp() {
       'favorites_page': FavoritesPage(),
       'addFav_page': AddFavPage(),
       'resume_page': ResumePage(),
+      'favDetail_page': FavDetailPage(),
     },
     visitor: (String path, Page<Object, dynamic> page) {
       /// 只有特定的范围的 Page 才需要建立和 AppStore 的连接关系
