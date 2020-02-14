@@ -14,11 +14,8 @@ class FavDetailPage extends Page<FavDetailState, Map<String, dynamic>> {
           reducer: buildReducer(),
           view: buildView,
           dependencies: Dependencies<FavDetailState>(
-              adapter: null,
-              slots: <String, Dependent<FavDetailState>>{
-                'favArticleList':
-                    NoneConn<FavDetailState>() + FavArticleListAdapter(),
-              }),
+              adapter: NoneConn<FavDetailState>() + FavArticleListAdapter(),
+              slots: <String, Dependent<FavDetailState>>{}),
           middleware: <Middleware<FavDetailState>>[],
         );
 }

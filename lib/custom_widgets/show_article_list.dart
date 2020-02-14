@@ -5,6 +5,7 @@ import 'package:blog_flutter/utils/service_method.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:flutter_shop/provider/login_provider.dart';
 // import 'package:flutter_shop/utils/service_method.dart';
@@ -39,6 +40,7 @@ class _ShowArticleListState extends State<ShowArticleList> {
   final String searchContent;
   final int articleTypeId;
   final String userId;
+  bool loading;
 
   _ShowArticleListState(
       this.url, this.searchContent, this.articleTypeId, this.userId);
@@ -47,6 +49,7 @@ class _ShowArticleListState extends State<ShowArticleList> {
   void initState() {
     super.initState();
     setState(() {
+      loading = true;
       _count = 10;
       pageNum = 1;
     });
@@ -65,6 +68,7 @@ class _ShowArticleListState extends State<ShowArticleList> {
           articleList.clear();
           articleList.addAll(newArticlList);
           pageNum++;
+          loading = false;
           // _count += 10;
         });
         // print('hard');
@@ -76,56 +80,72 @@ class _ShowArticleListState extends State<ShowArticleList> {
 
   @override
   Widget build(BuildContext context) {
-    return EasyRefresh.custom(
-      slivers: <Widget>[
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return ArticleList(
-                index: index,
-                userId: userId,
-              );
+    return loading
+        ? SpinKitRing(
+            color: Colors.blue,
+          )
+        : EasyRefresh.custom(
+            slivers: <Widget>[
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return ArticleList(
+                      index: index,
+                      userId: userId,
+                    );
+                  },
+                  childCount: _count,
+                ),
+              ),
+            ],
+            onRefresh: () async {
+              setState(() {
+                pageNum = 1;
+                _count = 0;
+
+                // loading = true;
+              });
+              print('开始加载');
+              var formPage = {
+                'pageNum': pageNum,
+                'pageSize': pageSize,
+                'articleTypeId': articleTypeId
+              };
+              await DioUtil.request(url, formData: formPage).then((val) {
+                var data = json.decode(val.toString());
+                List<Map> newArticlesList =
+                    (data['data']['rows'] as List).cast();
+                // print(newArticlesList);
+                setState(() {
+                  articleList.clear();
+
+                  articleList.addAll(newArticlesList);
+                  pageNum++;
+                  _count += (data['data']['rows'] as List).length;
+                });
+                print(articleList.length);
+              });
             },
-            childCount: _count,
-          ),
-        ),
-      ],
-      // onRefresh: () async {
-      //   setState(() {
-      //     pageNum = 0;
-      //     _count = 0;
-      //     articleList.clear();
-      //   });
-      //   print('开始加载');
-      //   var formPage = {'pageNum': pageNum, 'pageSize': pageSize};
-      //   await request('getArticleList', formData: formPage).then((val) {
-      //     var data = json.decode(val.toString());
-      //     List<Map> newArticlesList = (data['data']['rows'] as List).cast();
-      //     setState(() {
-      //       articleList.addAll(newArticlesList);
-      //       // _preCount = 10;
-      //     });
-      //     print(articleList.length);
-      //   });
-      // },
-      onLoad: () async {
-        print('开始加载更多');
-        var formPage = {
-          'pageNum': pageNum,
-          'pageSize': pageSize,
-          'searchContent': searchContent
-        };
-        await DioUtil.request(url, formData: formPage).then((val) {
-          var data = json.decode(val.toString());
-          List<Map> newArticlesList = (data['data']['rows'] as List).cast();
-          setState(() {
-            articleList.addAll(newArticlesList);
-            pageNum++;
-            _count += (data['data']['rows'] as List).length;
-          });
-        });
-      },
-    );
+            onLoad: () async {
+              print('开始加载更多');
+              var formPage = {
+                'pageNum': pageNum,
+                'pageSize': pageSize,
+                'searchContent': searchContent,
+                'articleTypeId': articleTypeId
+              };
+              await DioUtil.request(url, formData: formPage).then((val) {
+                var data = json.decode(val.toString());
+                List<Map> newArticlesList =
+                    (data['data']['rows'] as List).cast();
+                setState(() {
+                  articleList.addAll(newArticlesList);
+                  pageNum++;
+                  _count += (data['data']['rows'] as List).length;
+                });
+              });
+            },
+          );
   }
 }
 
@@ -142,7 +162,7 @@ class ArticleList extends StatelessWidget {
   Widget build(BuildContext context) {
     // final providerModal = Provider.of<IsLoginModal>(context);
     if (articleList.length != 0) {
-      print(index);
+      // print(index);
       //Card本身似乎没有点击事件，使用 InkWell 包裹使其能够触发点击事件
       return Container(
         color: Colors.white,
@@ -182,7 +202,7 @@ class ArticleList extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: Adapt.px(20)),
+                  padding: EdgeInsets.only(top: Adapt.px(10)),
                   child: Text(
                     articleList[index]['title'],
                     style: TextStyle(

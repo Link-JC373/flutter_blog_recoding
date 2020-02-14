@@ -3,9 +3,12 @@ import 'package:fish_redux/fish_redux.dart';
 
 class FavDetailState implements Cloneable<FavDetailState> {
   FavListResult result;
+  int userId;
   @override
   FavDetailState clone() {
-    return FavDetailState()..result = result;
+    return FavDetailState()
+      ..result = result
+      ..userId = userId;
   }
 }
 

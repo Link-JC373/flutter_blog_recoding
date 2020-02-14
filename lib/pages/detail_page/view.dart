@@ -79,7 +79,7 @@ Widget buildView(
                                                 top: Adapt.px(15)),
                                             alignment: Alignment.topLeft,
                                             child: Text(
-                                              state.author.disc,
+                                              state.author.disc ?? '',
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w100,

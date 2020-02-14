@@ -24,6 +24,7 @@ class _FavListConnector extends ConnOp<FavoritesState, List<ItemBean>> {
     for (var item in state.favList.results) {
       FavDetailState subState = FavDetailState();
       subState.result = item;
+      subState.userId = state.userId;
       items.add(ItemBean('favDetail', subState));
     }
     return items;

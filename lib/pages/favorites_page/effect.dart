@@ -26,6 +26,15 @@ Future _init(Action action, Context<FavoritesState> ctx) async {
     if (res != null) favListModel = FavListModel(res);
     ctx.dispatch(FavoritesActionCreator.getFavList(favListModel));
   });
+
+  _changeIsSelf(action, ctx);
+}
+
+void _changeIsSelf(Action action, Context<FavoritesState> ctx) {
+  if (ctx.state.userInfo != null &&
+      ctx.state.userId == ctx.state.userInfo['userId']) {
+    ctx.dispatch(FavoritesActionCreator.changeIsSelf(true));
+  }
 }
 
 Future _onAddFav(Action action, Context<FavoritesState> ctx) async {

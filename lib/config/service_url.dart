@@ -28,4 +28,6 @@ const servicePath = {
   'cancelFav': serviceUrl + 'user/cancelFav',
   'getMyArticle': serviceUrl + 'user/getMyArticle',
   'getMyComment': serviceUrl + 'default/getMyComment',
+  'initFavArticle': serviceUrl + 'default/initFavArticle',
+  'getFavArticle': serviceUrl + 'default/getFavArticle',
 };

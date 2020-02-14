@@ -8,6 +8,7 @@ Reducer<FavoritesState> buildReducer() {
   return asReducer(
     <Object, Reducer<FavoritesState>>{
       FavoritesAction.action: _onAction,
+      FavoritesAction.changeIsSelf: _changeIsSelf,
       FavoritesAction.getFavList: _getFavList,
     },
   );
@@ -15,6 +16,12 @@ Reducer<FavoritesState> buildReducer() {
 
 FavoritesState _onAction(FavoritesState state, Action action) {
   final FavoritesState newState = state.clone();
+  return newState;
+}
+
+FavoritesState _changeIsSelf(FavoritesState state, Action action) {
+  final FavoritesState newState = state.clone();
+  newState.isSelf = action.payload;
   return newState;
 }
 

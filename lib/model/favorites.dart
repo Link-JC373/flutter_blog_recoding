@@ -34,11 +34,6 @@ class FavListResult {
     favName = jsonRes['fav_name'];
     favId = jsonRes['fav_id'];
     favCount = jsonRes['articles_favorites'].length;
-    isFav = false;
-    for (var i in jsonRes['articles_favorites']) {
-      if (i['fav_id'] == favId) {
-        isFav = true;
-      }
-    }
+    isFav = jsonRes['isFav'];
   }
 }

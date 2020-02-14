@@ -9,10 +9,19 @@ Effect<MemberState> buildEffect() {
     MemberAction.action: _onAction,
     MemberAction.onHandleClick: _onHandleClick,
     MemberAction.onJumpToFav: _onJumpToFav,
+    MemberAction.onJumpToMsg: _onJumpToMsg,
   });
 }
 
 void _onAction(Action action, Context<MemberState> ctx) {}
+void _onJumpToMsg(Action action, Context<MemberState> ctx) {
+  if (ctx.state.userInfo != null) {
+    Navigator.of(ctx.context).pushNamed('message_page');
+  } else {
+    Navigator.of(ctx.context).pushNamed('login_page');
+  }
+}
+
 void _onHandleClick(Action action, Context<MemberState> ctx) {
   if (ctx.state.userInfo != null) {
     User user = User(ctx.state.userInfo);

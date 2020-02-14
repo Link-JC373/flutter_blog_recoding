@@ -40,7 +40,7 @@ Future _onFav(Action action, Context<ActionMenuState> ctx) async {
       fontSize: 16.0,
     );
   } else {
-    SpinKitCircle(
+    SpinKitRing(
       color: Colors.blue,
     );
   }
@@ -68,7 +68,7 @@ Future _onCancelFav(Action action, Context<ActionMenuState> ctx) async {
 
     // ctx.dispatch(ActionMenuActionCreator.change());
   } else {
-    SpinKitCircle(
+    SpinKitRing(
       color: Colors.blue,
     );
   }
@@ -78,6 +78,7 @@ Future _onChangeFavState(Action action, Context<ActionMenuState> ctx) async {
   Navigator.of(ctx.context).pop();
   var data = {
     'userId': ctx.state.userInfo['userId'],
+    'articleId': ctx.state.articleId
   };
   return showModalBottomSheet(
       context: ctx.context,

@@ -6,6 +6,7 @@ enum FavoritesAction {
   action,
   onAddFav,
   getFavList,
+  changeIsSelf,
   onShowDialog,
 }
 
@@ -24,5 +25,9 @@ class FavoritesActionCreator {
 
   static Action onShowDialog() {
     return Action(FavoritesAction.onShowDialog);
+  }
+
+  static Action changeIsSelf(bool flag) {
+    return Action(FavoritesAction.changeIsSelf, payload: flag);
   }
 }

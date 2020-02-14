@@ -8,7 +8,10 @@ import 'state.dart';
 Widget buildView(
     FavDetailState state, Dispatch dispatch, ViewService viewService) {
   return InkWell(
-    onTap: () {},
+    onTap: () {
+      // FavDetailActionCreator
+      dispatch(FavDetailActionCreator.onJumpToDetail());
+    },
     child: Container(
       padding: EdgeInsets.all(Adapt.px(30.0)),
       child: Row(

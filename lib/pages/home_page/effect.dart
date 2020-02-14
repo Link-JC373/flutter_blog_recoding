@@ -7,7 +7,16 @@ import 'state.dart';
 Effect<HomeState> buildEffect() {
   return combineEffects(<Object, Effect<HomeState>>{
     Lifecycle.initState: _initTabs,
+    HomeAction.addNumber: _addNumber,
   });
+}
+
+void _addNumber(Action action, Context<HomeState> ctx) {
+  if (ctx.state.userInfo == null) {
+    Navigator.of(ctx.context).pushNamed('login_page');
+  } else {
+    Navigator.of(ctx.context).pushNamed('addArticle_page');
+  }
 }
 
 void _initTabs(Action action, Context<HomeState> ctx) {

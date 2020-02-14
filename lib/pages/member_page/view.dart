@@ -120,7 +120,9 @@ Widget aboutMe(MemberState state, Dispatch dispatch) {
           ),
         ),
         child: FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            dispatch(MemberActionCreator.onJumpToMsg());
+          },
           color: Colors.white,
           child: Container(
             height: Adapt.px(100),

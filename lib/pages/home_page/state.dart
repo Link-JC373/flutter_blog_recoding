@@ -1,7 +1,8 @@
+import 'package:blog_flutter/global_store/state.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
-class HomeState implements Cloneable<HomeState> {
+class HomeState implements GlobalBaseState, Cloneable<HomeState> {
   List<Widget> tabs;
   TabController tabController;
   List<int> tabNumber;
@@ -20,10 +21,17 @@ class HomeState implements Cloneable<HomeState> {
       ..tabNumber = tabNumber
       ..tabController = tabController
       ..url = url
+      ..userInfo = userInfo
       ..isShowAdd = isShowAdd
       ..tabIndex = tabIndex
       ..number = number;
   }
+
+  @override
+  Color themeColor;
+
+  @override
+  var userInfo;
 }
 
 HomeState initState(Map<String, dynamic> args) {

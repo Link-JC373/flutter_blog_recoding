@@ -12,12 +12,14 @@ Widget buildView(
     appBar: AppBar(
       title: Text('收藏夹'),
       actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.add),
-          onPressed: () {
-            dispatch(FavoritesActionCreator.onShowDialog());
-          },
-        )
+        state.isSelf
+            ? IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  dispatch(FavoritesActionCreator.onShowDialog());
+                },
+              )
+            : Container(),
       ],
     ),
     body: Container(

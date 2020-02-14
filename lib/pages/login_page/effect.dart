@@ -97,7 +97,10 @@ Future _onLoginClicked(Action action, Context<LoginState> ctx) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       print('getToken-------->${data['token']}');
       prefs.setString('token', data['token']);
+      ctx.state.submitAnimationController.reverse();
+
       Navigator.of(ctx.context).pop(true);
+      // _onDispose(action, ctx);
     }
   } else {
     Fluttertoast.showToast(
