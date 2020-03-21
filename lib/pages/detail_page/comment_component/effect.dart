@@ -32,6 +32,7 @@ Future onAddCommentLikes(Action action, Context<CommentState> ctx) async {
 }
 
 void _onJumpToComDetail(Action action, Context<CommentState> ctx) {
+  // print(ctx.state.clr.likedList);
   Navigator.pushNamed(ctx.context, 'commentDetail_page',
       arguments: <String, Object>{
         'clr': ctx.state.clr,

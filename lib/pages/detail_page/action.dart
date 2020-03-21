@@ -24,11 +24,16 @@ enum DetailAction {
   getFavList,
   onGetFavState,
   onJumpToResume,
+  cleanComment,
 }
 
 class DetailActionCreator {
   static Action onAction() {
     return const Action(DetailAction.action);
+  }
+
+  static Action cleanComment() {
+    return const Action(DetailAction.cleanComment);
   }
 
   static Action onJumpToResume(User user) {

@@ -62,7 +62,7 @@ Widget createApp() {
   );
 
   return MaterialApp(
-    title: 'BlogFlutter',
+    title: 'playMate',
     theme: ThemeData(primarySwatch: Colors.blue),
     home: routes.buildPage('index_page', {
       'pages': [

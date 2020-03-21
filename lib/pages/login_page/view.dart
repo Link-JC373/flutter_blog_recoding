@@ -87,7 +87,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
       builder: (ctx, w) {
         double buttonWidth = Adapt.screenW() * 0.8;
         return Container(
-          margin: EdgeInsets.only(top: Adapt.px(60)),
+          margin: EdgeInsets.only(top: Adapt.px(20)),
           height: Adapt.px(100),
           child: Stack(
             children: <Widget>[
@@ -258,7 +258,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                 ),
                 Container(
                     alignment: Alignment.bottomRight,
-                    height: Adapt.px(120),
+                    height: Adapt.px(90),
                     child: FadeTransition(
                       opacity:
                           Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(

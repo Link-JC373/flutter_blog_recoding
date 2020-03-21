@@ -64,7 +64,9 @@ Widget buildView(
                               ),
                               Text(
                                 // 'disc',
-                                state.clr.user.disc,
+                                state.clr.user.disc != null
+                                    ? state.clr.user.disc
+                                    : '',
                                 textAlign: TextAlign.start,
                               ),
                               Container(
@@ -110,7 +112,7 @@ Widget buildView(
                               child: VerticalDivider(color: Colors.grey)),
                           Container(
                             padding: EdgeInsets.all(Adapt.px(20.0)),
-                            child: Text('获赞 ${state.clr.likeCounts}'),
+                            child: Text('获赞 ${state.clr.likedList.length}'),
                           ),
                         ],
                       ),

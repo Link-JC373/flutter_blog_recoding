@@ -18,12 +18,21 @@ Reducer<DetailState> buildReducer() {
       DetailAction.bindScroll: _bindScroll,
       DetailAction.refreshCommentList: _refreshCommentList,
       DetailAction.getFavList: _getFavList,
+      DetailAction.cleanComment: _cleanComment,
     },
   );
 }
 
 DetailState _onAction(DetailState state, Action action) {
   final DetailState newState = state.clone();
+  return newState;
+}
+
+DetailState _cleanComment(DetailState state, Action action) {
+  final DetailState newState = state.clone();
+  newState.commentList =
+      new CommentListModel.fromParams(results: List<CommentListResult>());
+
   return newState;
 }
 
@@ -60,6 +69,7 @@ DetailState _refreshCommentList(DetailState state, Action action) {
   final DetailState newState = state.clone();
   CommentListModel commentList = action.payload ??
       CommentListModel.fromParams(results: List<CommentListResult>());
+
   newState.commentList = commentList;
   return newState;
 }

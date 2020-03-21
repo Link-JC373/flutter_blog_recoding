@@ -53,20 +53,23 @@ Future _onAddComment(Action action, Context<DetailState> ctx) async {
     };
     await DioUtil.request('addComment', formData: formData).then((res) {
       res = json.decode(res);
-      print(res['data']);
+
       CommentListModel model;
-      if (res['data'] != null) model = CommentListModel(res['data']);
-      ctx.dispatch(DetailActionCreator.refreshCommentList(model));
-      ctx.dispatch(DetailActionCreator.clickBlank());
-      Fluttertoast.showToast(
-        msg: "发表成功",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
-        backgroundColor: Colors.green[400],
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      if (res['data'] != null) {
+        model = CommentListModel(res['data']['data']);
+
+        ctx.dispatch(DetailActionCreator.refreshCommentList(model));
+        ctx.dispatch(DetailActionCreator.clickBlank());
+        Fluttertoast.showToast(
+          msg: "发表成功",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 1,
+          backgroundColor: Colors.green[400],
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      }
     });
   }
   // print(ctx.state.textController.text);
@@ -74,7 +77,7 @@ Future _onAddComment(Action action, Context<DetailState> ctx) async {
 
 void _onCommentClick(Action action, Context<DetailState> ctx) {
   if (ctx.state.userInfo != null) {
-    ctx.dispatch(ctx.dispatch(DetailActionCreator.getForcus()));
+    ctx.dispatch(DetailActionCreator.getForcus());
   } else {
     _onGoToLogin(action, ctx);
   }
@@ -98,7 +101,8 @@ Future _init(Action action, Context<DetailState> ctx) async {
     var data = json.decode(res.toString());
     ctx.dispatch(DetailActionCreator.initAction(data));
   });
-
+  //先清空一下评论，不然登录返回的时候会直接把评论加到原来的后面------这个方式很不好，但是如果要改的话需要大改，暂时先这样。
+  ctx.dispatch(DetailActionCreator.cleanComment());
   //初始化获取评论信息
   _onLoadMore(action, ctx);
 

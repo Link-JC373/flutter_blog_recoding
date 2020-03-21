@@ -23,9 +23,9 @@ void _initTabs(Action action, Context<HomeState> ctx) {
   print('initState------------------');
   final List<Widget> tabs = <Widget>[
     Text('推荐'),
-    Text('视频教程'),
-    Text('学习'),
-    Text('娱乐'),
+    Text('游戏开发'),
+    Text('游戏运维'),
+    Text('游戏测评'),
   ];
   final List<int> tabNumber = <int>[
     0,

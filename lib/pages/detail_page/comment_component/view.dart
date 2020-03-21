@@ -54,6 +54,7 @@ Widget buildView(
                       width: Adapt.screenW() * 0.5,
                       alignment: Alignment.centerLeft,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             // 'Name',
@@ -65,6 +66,10 @@ Widget buildView(
                                   // 'disc',
                                   state.clr.user.disc,
                                   textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w100,
+                                    fontSize: 12,
+                                  ),
                                 )
                               : Container(),
                         ],

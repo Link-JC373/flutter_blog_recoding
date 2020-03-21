@@ -10,7 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:flutter_shop/provider/login_provider.dart';
 // import 'package:flutter_shop/utils/service_method.dart';
 // import 'package:provider/provider.dart';
-import '../routers/application.dart';
+// import '../routers/application.dart';
 
 int pageSize = 10;
 int pageNum = 0;

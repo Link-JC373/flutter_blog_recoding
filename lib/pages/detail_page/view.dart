@@ -210,7 +210,7 @@ Widget beforeForcus(DetailState state, Dispatch dispatch) {
         Expanded(
           flex: 1,
           child: FlatButton(
-            child: Text('click'),
+            child: Text('我要说两句'),
             onPressed: () async {
               dispatch(DetailActionCreator.onCommentClick());
             },
@@ -239,7 +239,7 @@ Widget beforeForcus(DetailState state, Dispatch dispatch) {
                 iconSize: 16,
                 onPressed: () {},
               ),
-              Text('233'),
+              Text('${state.commentList.totalResults}'),
             ],
           ),
         ),

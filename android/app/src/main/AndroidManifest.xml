@@ -8,7 +8,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="playMate"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/play_blue">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -27,4 +27,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
